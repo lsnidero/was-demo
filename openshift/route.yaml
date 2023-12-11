@@ -1,0 +1,15 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: esposizione-contratti
+  name: esposizione-contratti
+spec:
+  path: /HelloWorld/hello
+  port:
+    targetPort: http
+  to:
+    kind: Service
+    name: esposizione-contratti
+    weight: 100
+  wildcardPolicy: None

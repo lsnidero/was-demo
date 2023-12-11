@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: esposizione-contratti
+  name: esposizione-contratti
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: esposizione-contratti
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: esposizione-contratti
+    spec:
+      containers:
+      - image: docker.io/lsnidero/was-demo:0.0.2
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /HelloWorld/hello
+            port: 9080
+            scheme: HTTP
+          initialDelaySeconds: 180
+          periodSeconds: 180
+          successThreshold: 1
+          timeoutSeconds: 1
+        name: esposizione-contratti
+        ports:
+        - containerPort: 9080
+          protocol: TCP
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /HelloWorld/hello
+            port: 9080
+            scheme: HTTP
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          successThreshold: 1
+          timeoutSeconds: 1
+        resources: {}
+        startupProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /HelloWorld/hello
+            port: 9080
+            scheme: HTTP
+          initialDelaySeconds: 180
+          periodSeconds: 30
+          successThreshold: 1
+          timeoutSeconds: 1
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
