@@ -1,0 +1,3 @@
+classloader,name,jndi_name,spec
+myCl,servizioUno,ser/link/servizioUno,http://test.com
+,servizioDueSenzaClassLoader,ser/link/servizioDue,http://test.com?servizio=due

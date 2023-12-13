@@ -1,0 +1,3 @@
+alias,username,password,description
+db2-creds,admin,admin,Utente db2
+oracle-creds,admin,admin,Utente Oracle

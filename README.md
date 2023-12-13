@@ -28,5 +28,5 @@ podman build -t app:tag .
 ## Lanciare l'immagine in locale (facoltativo)
 
 ```bash
-podman run app:tag --name applicazione-demo -p 9043:9043 -p 9443:9443
+podman run --name applicazione-demo -p 9043:9043 -p 9443:9443
 ```
